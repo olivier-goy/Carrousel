@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+
+
+
+    <div id="carrousel">
+
+            <ul>
+                <li><img src="background1.jpg" width="700" height="300" /></li>
+                <li><img src="background.jpg" width="700" height="300" /></li>
+                <li><img src="wood.jpg" width="700" height="300" /></li>
+                <li><img src="background1.jpg" width="700" height="300" /></li>
+                <li><img src="background.jpg" width="700" height="300" /></li>
+                <li><img src="wood.jpg" width="700" height="300" /></li>
+            </ul>
+
+
+        <div class="row" id="button">
+            <div class="col-lg-offset-0 col-lg-1">
+                <div class="prev">
+                    <button type="button" class="btn btn-default btn-lg">
+              <span class="glyphicon glyphicon glyphicon-chevron-left" aria-hidden="true"></span></button>
+                </div>
+            </div>
+            <div class="col-lg-offset-9 col-lg-2" id="buttonRight">
+                <div class="next">
+                    <button type="button" class="btn btn-default btn-lg" aria-label="Left Align">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <style>
+        #carrousel {
+            position: relative;
+            height: 100px;
+            width: 700px;
+            margin: auto;
+        }
+
+
+
+        #carrousel ul li {
+            list-style-type: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        #button {
+            padding-top: 300px;
+        }
+        #buttonRight{
+            padding-left: 55px;
+        }
+    </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            var $carrousel = $('#carrousel'),
+                $img = $('#carrousel img'),
+                indexImg = $img.length - 1,
+                i = 0,
+                $currentImg = $img.eq(i);
+
+            $img.css('display', 'none');
+            $currentImg.css('display', 'block');
+
+            $carrousel.append('<div class="controls"> <span class="prev"></span> <span class="next"></span> </div>');
+
+            $('.next').click(function() {
+
+                i++;
+
+                if (i <= indexImg) {
+                    $img.css('display', 'none');
+                    $currentImg = $img.eq(i);
+                    $currentImg.css('display', 'block');
+                } else {
+                    i = indexImg;
+                }
+
+            });
+
+            $('.prev').click(function() {
+
+                i--;
+
+                if (i >= 0) {
+                    $img.css('display', 'none');
+                    $currentImg = $img.eq(i);
+                    $currentImg.css('display', 'block');
+                } else {
+                    i = 0;
+                }
+
+            });
+
+            function slideImg() {
+                setTimeout(function() {
+
+                    if (i < indexImg) {
+                        i++;
+                    } else {
+                        i = 0;
+                    }
+
+                    $img.css('display', 'none');
+
+                    $currentImg = $img.eq(i);
+                    $currentImg.css('display', 'block');
+
+                    slideImg();
+
+                }, 10000);
+            }
+
+            slideImg();
+
+        });
+    </script>
+
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</body>
+
+</html>
